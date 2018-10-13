@@ -1,0 +1,31 @@
+
+#:include connected.kv
+#: include options.kv
+#: include screen1.kv
+#: include screen2.kv
+#: include sendmail.kv
+#: include search.kv
+#: include latest.kv
+
+<Screen3>:
+    BoxLayout:
+        id: screen3
+        orientation: 'vertical'
+        padding: [10,50,10,50]
+        spacing: 50
+        Button:
+            text: "Send Mail"
+            font_size: 24
+            on_press: root.send()
+        Button:
+            text: "Search Mail"
+            font_size: 24
+            on_press: root.search()
+        Button:
+            text: "Get Latest Mail"
+            font_size: 24
+            on_press: root.latest()
+        Button:
+            text: "Disconnect"
+            font_size: 24
+            on_press: root.disconnect()

@@ -1,0 +1,126 @@
+Web Scraping
+
+ParseReviews()
+    path -> "http://amazon.com/"+path_provided
+    XPATH_AGGREGATE -> '//span[@id="acrCustomerReviewText"]'
+    XPATH_REVIEW_SECTION_1 -> '//div[contains(@id,"reviews-summary")]'
+    XPATH_REVIEW_SECTION_2 -> '//div[@data-hook="review"]'
+
+    XPATH_AGGREGATE_RATING -> '//table[@id="histogramTable"]//tr'
+    XPATH_PRODUCT_NAME -> '//h1//span[@id="productTitle"]//text()'
+    XPATH_PRODUCT_PRICE  -> '//span[@id="priceblock_ourprice"]/text()'
+
+    product_price->json_load(review.json['product_price'])
+    if product_price !=0
+        product_name->json_load(review.json['product_name'])
+        review-> json_load(review.json['review'])
+        rating-> json_load(review.json['rating'])
+        //cleaning data via bigram test
+        for word in review
+            if word.dictionary_check()<0
+                word->word.replace(nearest_match)
+        data.json->review.json[1:50] //First 50 articles processed
+
+    else
+        print No reviews found
+Classify(sentence)
+    for word in sentence
+        if word == 'love' or word.class=='LOVE'
+            return 'LOVE'
+        else if word == 'happiness' or word.class=='HAPPINESS'
+            return 'HAPPINESS'
+        else if word == 'angry' or word.class=='ANGER'
+            return 'ANGER'
+        else if word == 'relief' or word.class == 'RELIEF'
+            return 'RELIEF'
+        else if word == 'welcome' or word.class == 'GREETING'
+            return 'GREETING'
+Extract(max_common,classification)
+    print('Most common rating is',max_common)
+    print('The most common classification is',classification)
+Input_func(sentence)
+    object -> ParseReview()
+    a->x.indexOf("gp/product/")
+    if a >=0
+        asin-> sentence[a+1,sentence.length()]
+
+
+Mail Parsing
+
+SendMail(From,To,Message,Subject)
+    //Commands to connect to GMAIL smtp
+    server -> smtplib.SMTP("smtp.gmail.com", 587)
+    server.ehlo()
+    server.starttls()
+    server.login(userid, passwd)
+    server.sendmail(From, To, Message,subject)
+    server.close()
+
+ShowMail()
+    for i in range(latest_email_id,latest_email_id-5, -1)
+        typ, data -> mail.fetch(str(i), '(RFC822)' )
+        for response_part in data:
+            if isinstance(response_part, tuple)
+                msg -> email.message_from_string(response_part[1].decode())
+                email_subject -> msg['subject']
+                email_from -> msg['from']
+                print('From : ' +str(email_from) + '\n')
+                print ('Subject : ' + email_subject + '\n')
+                print("press b to view body, any other key to continue")
+                ch->Read_input()
+                if ch=='b':
+                    if msg.is_multipart()
+                        //display body only is b pressed
+                        for payload in msg.get_payload():
+                            
+                            print(payload.get_payload())
+                    else
+                        print(msg.get_payload())
+LatestMail()
+    for i in range(latest_email_id,latest_email_id-1, -1):
+        typ, data -> mail.fetch(str(i), '(RFC822)' )
+        for response_part in data:
+            k=''
+            if isinstance(response_part, tuple):
+                msg -> email.message_from_string(response_part[1].decode())
+                x->str(msg)
+                //print(x)
+                //input()
+                for j in range(x.find("charset=\"UTF-8\""),x.find("--00",x.find("charset=\"UTF-8\""))):
+                    k->k+x[j]
+                k->k[17:]
+                email_subject -> msg['subject']
+                email_from -> msg['from']
+                print('From : ' +str(email_from) + '\n')
+                print ('Subject : ' + email_subject + '\n')
+                email_from-> email_from +"  "+email_subject
+                print("Message :"+k)
+                obj->Mail()
+                obj.classify(k)
+            
+Front End with Kivy
+
+Login(username, password)
+    if username==uname && password==passwd
+        print("Successfully logged in")
+        manager -> ScreenManager()
+        
+        //set windows size add_widget is an inbuilt function for adding widgets to windows
+        Window.size->(500,500)
+        add_widget(Login(name='login'))
+        add_widget(Connected(name='connected'))
+        add_widget(Options(name='options'))
+        add_widget(Screen1(name='screen1'))
+        add_widget(Screen2(name='screen2'))
+        add_widget(Screen3(name='screen3'))
+        add_widget(SendMail(name='sendmail'))
+        add_widget(Search(name='search'))
+        add_widget(Latest(name='latest'))
+Options()
+    detect_object->EmotionDetector()
+    scrape_object->AmazonScrape()
+    mail_object->Mail()
+Screens()
+    display(screen1)
+    display(screen2)
+    display(screen3)

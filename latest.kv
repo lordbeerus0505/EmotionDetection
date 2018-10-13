@@ -1,0 +1,33 @@
+
+#:include connected.kv
+#: include options.kv
+#: include screen1.kv
+#: include screen3.kv
+#: include screen2.kv
+<Latest>:
+    output:output
+    BoxLayout
+        id: search
+        orientation: 'vertical'
+        padding: [10,50,10,50]
+        spacing: 30
+
+        Label:
+            text: 'Latest Mail'
+            font_size: 32
+
+        BoxLayout:
+            orientation: 'vertical'
+            id: output
+
+            Label:
+                text: 'Results'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width-20, 20
+        Button:
+            text: 'Return to Mail Options'
+            font_size:24
+            on_press: root.disconnect()	
+            
+        

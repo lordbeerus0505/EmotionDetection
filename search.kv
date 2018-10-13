@@ -1,0 +1,55 @@
+
+#:include connected.kv
+#: include options.kv
+#: include screen1.kv
+#: include screen3.kv
+#: include screen2.kv
+<Search>:
+    output:output
+    BoxLayout
+        id: search
+        orientation: 'vertical'
+        padding: [10,50,10,50]
+        spacing: 30
+
+        Label:
+            text: 'Search Mail'
+            font_size: 32
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Input Search Query'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width-20, 20
+
+            TextInput:
+                id: input
+                multiline:False
+                font_size: 22
+                height: 24
+        
+        Button:
+            text: 'Submit'
+            font_size: 24
+
+            on_press: root.submit(input.text)
+        Button:
+            text: 'Disconnect'
+            font_size:24
+            on_press: root.disconnect()	
+            
+        BoxLayout:
+            orientation: 'vertical'
+            id: output
+
+            Label:
+                text: 'Results'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width-20, 20
+
+        	
+        

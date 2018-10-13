@@ -1,0 +1,51 @@
+
+#:include connected.kv
+#: include options.kv
+#: include screen1.kv
+#: include screen3.kv
+<Screen2>:
+    output: output
+    BoxLayout
+        
+        id: screen2
+        orientation: 'vertical'
+        padding: [10,50,10,50]
+        spacing: 30
+
+        Label:
+            text: 'Product Review'
+            font_size: 32
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Product Link for Amazon India'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width-20, 20
+
+            TextInput:
+                id: input
+                multiline:False
+                font_size: 22
+                height: 24
+        Button:
+            text: 'Submit'
+            font_size: 24
+
+            on_press: root.submit(input.text)
+        Button:
+            text: 'Disconnect'
+            font_size:24
+            on_press: root.disconnect()		
+        BoxLayout:
+            orientation: 'vertical'
+            id: output
+            multiline:True
+
+            Label:
+                text: 'Results'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width-20, 20

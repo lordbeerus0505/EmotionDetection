@@ -1,0 +1,72 @@
+#:include connected.kv
+#: include options.kv
+#: include screen1.kv
+#: include screen3.kv
+#: include screen2.kv
+<SendMail>:
+    BoxLayout
+        id: send
+        orientation: 'vertical'
+        padding: [10,50,10,50]
+        spacing: 5
+
+        Label:
+            text: 'Send An Email'
+            font_size: 20
+            
+        Label:
+            text: 'Email ID'
+            font_size: 22
+            halign: 'left'
+            text_size: root.width-20, 0
+
+        TextInput:
+            id: email
+            multiline:False
+            font_size: 28
+            
+        Label:
+            text: 'Subject'
+            font_size: 22
+            halign: 'left'
+            text_size: root.width-20, 0
+
+        TextInput:
+            id: subject
+            multiline:False
+            font_size: 28
+            
+        Label:
+            text: 'Content'
+            font_size: 22
+            halign: 'left'
+            text_size: root.width-20, 0
+
+        TextInput:
+            id: content
+            multiline:True
+            font_size: 28
+        
+        Label:
+            text: ''
+            font_size: 24
+            halign: 'left'
+            text_size: root.width-20, 20
+        Button:
+            text: 'Submit'
+            font_size: 18
+    
+            on_press: root.submit(content.text,subject.text,email.text)
+        Button:
+            text: 'Disconnect'
+            font_size:18
+            on_press: root.disconnect()		
+        BoxLayout:
+            orientation: 'vertical'
+            id: output
+
+            Label:
+                text: 'Results'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width-20, 20
