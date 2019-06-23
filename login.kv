@@ -4,6 +4,7 @@
 
 <Login>:
     BoxLayout
+        
         id: login_layout
         orientation: 'vertical'
         padding: [10,50,10,50]
@@ -18,14 +19,14 @@
 
             Label:
                 text: 'Login'
-                font_size: 18
+                font_size: 24
                 halign: 'left'
                 text_size: root.width-20, 20
 
             TextInput:
                 id: login
                 multiline:False
-                font_size: 28
+                font_size: 20
 
         BoxLayout:
             orientation: 'vertical'
@@ -42,7 +43,10 @@
                 font_size: 28
 
         Button:
+            background_normal:''
+            background_color: 1, .3, .4, .9
             text: 'Login'
+            color:0,0,0,1
             font_size: 24
 
             on_press: root.do_login(login.text, password.text)

@@ -53,11 +53,15 @@
             halign: 'left'
             text_size: root.width-20, 20
         Button:
+            background_normal:''
+            background_color: 0, 1, 0.4, .8
             text: 'Submit'
             font_size: 18
     
             on_press: root.submit(content.text,subject.text,email.text)
         Button:
+            background_normal:''
+            background_color: 1, .3, .4, .9
             text: 'Disconnect'
             font_size:18
             on_press: root.disconnect()		

@@ -21,7 +21,8 @@ class Screen1(Screen):
         print(ip)
         # dataset    
         # training_data = []
-        
+        f=open("emotion.txt","a+")
+        f.write("Input: "+str(ip)+"\n")
         obj=Neural()
         # Y.clear_widgets()
         # obj.classify(str(ip))
@@ -32,9 +33,15 @@ class Screen1(Screen):
                 print(x)
                 s+= x[0]
             Y=Label(text="Detected emotion : "+s+"\n",font_size=24)
+            f.write(str(s))
         else:
+            f.write(str(Y))
             Y=Label(text=Y+"\n",font_size=24)
+            
+            
         self.output.add_widget(Y)
+        f.close()
+        print("closed")
         
     def disconnect(self):
         Window.size=(500,500)

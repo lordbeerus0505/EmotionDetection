@@ -14,27 +14,43 @@ from sendmail import SendMail
 from search import Search
 from latest import Latest
 from Mails import Mail
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Label
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+
+import sys
 
 class Login(Screen):
-    
+
     def do_login(self, loginText, passwordText):
         app = App.get_running_app()
-        
+
         app.username = loginText
         app.password = passwordText
         if loginText=='root' and passwordText=='root':
             print("LOGGED IN")
+            self.manager.transition = SlideTransition(direction="left")
+            self.manager.current = 'options'
             obj=Mail()
-            obj.LatestMails()
+
 
         else:
             print("auth failed")
-        
-        self.manager.transition = SlideTransition(direction="left")
-        self.manager.current = 'options'
+            box=BoxLayout(orientation='vertical',padding=(10))
+            box.add_widget(Label(text="Please Enter the Correct Login Details"))
+            btn1=Button(text='Close')
+            box.add_widget(btn1)
+            popup=Popup(title='Incorrect Login',title_size=(30),title_align='center',content=box,size_hint=(None,None),size=(400,200),auto_dismiss=False)
+            btn1.bind(on_press=popup.dismiss)
+            popup.open()
 
-        app.config.read(app.get_application_config())
-        app.config.write()
+            # sys.exit("Auth failed, restart program")
+
+
+
+        #app.config.read(app.get_application_config())
+        #app.config.write()
     def validate(self):
         print(self.username)
         print(self.password)
@@ -52,7 +68,7 @@ class Login(Screen):
 class LoginApp(App):
     username = StringProperty(None)
     password = StringProperty(None)
-    
+
     def build(self):
         manager = ScreenManager()
         print("building")
@@ -83,8 +99,8 @@ class LoginApp(App):
         return super(LoginApp, self).get_application_config(
             '%s/config.cfg' % (conf_directory)
         )
-        
-    
+
+
 
 
 if __name__ == '__main__':

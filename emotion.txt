@@ -1,0 +1,20 @@
+Input: thank god the semester is over
+Detected emotion: relief
+Input: i hate this program
+Detected emotion : ANGER
+Input: i love dragon ball
+Detected emotion : LOVE
+Input: Thank god the semester is over
+Detected emotion: relieflove
+Input: I am so worried about tomorrow's exam
+Detected emotion: worry
+Input: i hate you
+Detected emotion : ANGER
+Input: I am happy today
+Detected emotion : HAPPINESS
+Input: angry
+Detected emotion : ANGER
+Input: angry relief
+Detected emotion : ANGER
+Input: angry happy
+Detected emotion : ANGER

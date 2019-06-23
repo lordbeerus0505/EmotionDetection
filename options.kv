@@ -11,14 +11,63 @@
         orientation: 'vertical'
 
         Button:
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+            background_normal:''
+            color:0,0,0,1
             text: "Emotion Detection"
+            text_size: self.size
+            valign:'bottom'
+            halign:'center'
             font_size: 24
             on_press: root.detect()
+            Image:
+                source: 'brain.png'
+                y: self.parent.y-20
+                x: self.parent.width * .5 - self.width * .5
+                size: 225, 225
         Button:
+            background_normal:''
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+            color:0,0,0,1
             text: "Product Review"
+            text_size: self.size
+            valign:'bottom'
+            halign:'center'
             font_size: 24
             on_press: root.scrape()
+            Image:
+                source: 'amazon.png'
+                y: self.parent.width * .5 - self.width * .5
+                x: self.parent.width * .5 - self.width * .5   
+                size: 225, 225
+            
         Button:
+            background_normal:''
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+            color:0,0,0,1
             text: "Mail Assistant"
+            text_size: self.size
+            valign:'bottom'
+            halign:'center'
             font_size: 24
             on_press: root.mail()
+            Image:
+                source: 'gmail.png'
+                y: self.parent.y-20
+                x: self.parent.width * .5 - self.width * .5
+                size: 225, 225

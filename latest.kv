@@ -15,17 +15,24 @@
         Label:
             text: 'Latest Mail'
             font_size: 32
-
+        Button:
+            background_normal:''
+            background_color: 0, 1, 0.4, .8
+            id:submit             
+            text: 'Retrieve Latest Mail'
+            font_size:24
+            on_press: root.submit()	
         BoxLayout:
             orientation: 'vertical'
             id: output
-
             Label:
                 text: 'Results'
                 font_size: 18
                 halign: 'left'
                 text_size: root.width-20, 20
         Button:
+            background_normal:''
+            background_color: 1, .3, .4, .9
             text: 'Return to Mail Options'
             font_size:24
             on_press: root.disconnect()	

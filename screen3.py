@@ -25,7 +25,9 @@ class Screen3(Screen):
         self.manager.current = 'search'
     def latest(self):
         Window.size=(500,650)
-        obj = Mail()
-        obj.LatestMails()
+
         self.manager.transition = SlideTransition(direction="right")
         self.manager.current = 'latest' 
+        y=Label(text=str("Testing"),font_size=24);
+        # self.output.add_widget(y);
+        

@@ -8966,7 +8966,7 @@ class Neural:
         synapse_1 = 2*np.random.random((hidden_neurons, len(classes))) - 1
 
         prev_synapse_0_weight_update = np.zeros_like(synapse_0)
-        prev_synapse_1_weight_update = np.zeros_like(synapse_1)
+        prev_synapse_1_weight_update =   np.zeros_like(synapse_1)
 
         synapse_0_direction_count = np.zeros_like(synapse_0)
         synapse_1_direction_count = np.zeros_like(synapse_1)
